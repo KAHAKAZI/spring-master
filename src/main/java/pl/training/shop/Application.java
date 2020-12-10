@@ -10,7 +10,8 @@ public class Application {
 //        var paymentIdGenerator = new UUIDPaymentIdGenerator();
         var paymentIdGenerator = new IncrementalIdPaymentGenerator();
 
-        var paymentService = new FakePaymentService(paymentIdGenerator);
+        var fakePaymentService = new FakePaymentService(paymentIdGenerator);
+        var paymentService = new LoggingPaymentService(fakePaymentService);
         var paymentRequest = PaymentRequest.builder()
                 .money(LocalMoney.of(1_000))
                 .build();
