@@ -1,13 +1,9 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 Spring-Master,pl.training.shop.payments,UUIDPaymentIdGenerator,0,6,0,0,0,2,0,2,0,2
 Spring-Master,pl.training.shop.payments,LocalMoney,3,11,0,0,1,3,1,1,1,1
-Spring-Master,pl.training.shop.payments,PaymentRequest.PaymentRequestBuilder,11,16,0,0,0,1,2,3,2,3
 Spring-Master,pl.training.shop.payments,PaymentConsoleLogger,24,0,0,0,5,0,4,0,4,0
-Spring-Master,pl.training.shop.payments,FakePaymentService,0,20,0,0,0,7,0,2,0,2
-Spring-Master,pl.training.shop.payments,Payment,155,31,36,0,1,5,21,6,3,6
-Spring-Master,pl.training.shop.payments,Payment.PaymentBuilder,10,35,0,0,0,1,1,6,1,6
+Spring-Master,pl.training.shop.payments,FakePaymentService,0,14,0,0,0,6,0,1,0,1
 Spring-Master,pl.training.shop.payments,PaymentStatus,0,44,0,0,0,2,0,1,0,1
-Spring-Master,pl.training.shop.payments,IncrementalIdPaymentGenerator,4,22,0,0,1,3,1,3,1,3
+Spring-Master,pl.training.shop.payments,IncrementalIdPaymentGenerator,0,22,0,0,0,3,0,3,0,3
 Spring-Master,pl.training.shop.payments,PaymentConfiguration,3,0,0,0,1,0,1,0,1,0
-Spring-Master,pl.training.shop.payments,PaymentRequest,92,16,20,0,2,2,14,3,4,3
 Spring-Master,pl.training.shop,Application,39,0,0,0,10,0,3,0,3,0
