@@ -12,28 +12,18 @@ import java.time.Instant;
 public class FakePaymentService implements PaymentService {
 
     private final PaymentIdGenerator paymentIdGenerator;
-
     private final PaymentRepository paymentRepository;
 
     @LogPayments
     @Override
-    public Payment process(PaymentRequest paymentRequest){
-        return Payment.builder()
+    public Payment process(PaymentRequest paymentRequest) {
+        var payment = Payment.builder()
                 .id(paymentIdGenerator.getNext())
                 .money(paymentRequest.getMoney())
                 .timestamp(Instant.now())
                 .status(PaymentStatus.STARTED)
                 .build();
-    }
-
-    @Override
-    public void save(Payment payment) {
-        paymentRepository.save(payment);
-    }
-
-    @Override
-    public int getNumberOfAllSaved() {
-        return paymentRepository.count();
+        return paymentRepository.save(payment);
     }
 
 }
