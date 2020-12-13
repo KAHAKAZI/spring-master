@@ -15,6 +15,4 @@ public class Payment {
     Instant timestamp;
     PaymentStatus status;
 
-
-
 }

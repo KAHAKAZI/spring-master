@@ -19,6 +19,11 @@ public class Application {
 
             var payment = paymentService.process(paymentRequest);
             log.info(payment.toString());
+
+            log.info("Count before: " + paymentService.getNumberOfAllSaved());
+            paymentService.save(payment);
+
+            log.info("Count after: " + paymentService.getNumberOfAllSaved());
         }
     }
 }

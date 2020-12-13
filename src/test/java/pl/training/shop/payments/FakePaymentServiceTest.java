@@ -28,12 +28,13 @@ class FakePaymentServiceTest {
 
     @Mock
     private PaymentIdGenerator paymentIdGenerator;
+    private PaymentRepository paymentRepository;
     private Payment payment;
 
     @BeforeEach
     void setUp() {
         Mockito.when(paymentIdGenerator.getNext()).thenReturn(PAYMENT_ID);
-        FakePaymentService fakePaymentService = new FakePaymentService(paymentIdGenerator);
+        FakePaymentService fakePaymentService = new FakePaymentService(paymentIdGenerator, paymentRepository);
         payment = fakePaymentService.process(PAYMENT_REQUEST);
     }
 
