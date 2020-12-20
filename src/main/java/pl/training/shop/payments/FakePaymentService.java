@@ -12,14 +12,10 @@ import java.time.Instant;
 //@RequiredArgsConstructor
 public class FakePaymentService implements PaymentService {
 
+    @Autowired
     private PaymentIdGenerator paymentIdGenerator;
+    @Autowired
     private PaymentRepository paymentRepository;
-
-    @Autowired // optional in newer versions of Spring
-    public FakePaymentService(PaymentIdGenerator paymentIdGenerator, PaymentRepository paymentRepository) {
-        this.paymentIdGenerator = paymentIdGenerator;
-        this.paymentRepository = paymentRepository;
-    }
 
     @LogPayments
     @Override
