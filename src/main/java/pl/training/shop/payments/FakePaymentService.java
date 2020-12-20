@@ -9,11 +9,17 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 
 @Service("paymentService")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class FakePaymentService implements PaymentService {
 
-    private final PaymentIdGenerator paymentIdGenerator;
-    private final PaymentRepository paymentRepository;
+    private PaymentIdGenerator paymentIdGenerator;
+    private PaymentRepository paymentRepository;
+
+    @Autowired // optional in newer versions of Spring
+    public FakePaymentService(PaymentIdGenerator paymentIdGenerator, PaymentRepository paymentRepository) {
+        this.paymentIdGenerator = paymentIdGenerator;
+        this.paymentRepository = paymentRepository;
+    }
 
     @LogPayments
     @Override

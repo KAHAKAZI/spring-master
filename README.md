@@ -87,3 +87,9 @@ Jacoco EXCLUSION exemplary configuration:
                             </rules>
 <configuration>
 ```
+
+Run maven without tests:
+```sh
+mvn clean install -Dmaven.test.skip=true
+```
+
