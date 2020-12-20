@@ -4,9 +4,10 @@ import lombok.extern.java.Log;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @Aspect
-@Component
+@Service
 @Log
 public class PaymentConsoleLogger {
 
