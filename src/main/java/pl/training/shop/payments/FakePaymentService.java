@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,8 @@ public class FakePaymentService implements PaymentService {
     private PaymentRepository paymentRepository;
 
     @Autowired
-    public void setPaymentIdGenerator(PaymentIdGenerator paymentIdGenerator) {
+    public FakePaymentService(@Qualifier("incrementalIdPaymentGenerator") PaymentIdGenerator paymentIdGenerator, PaymentRepository paymentRepository) {
         this.paymentIdGenerator = paymentIdGenerator;
-    }
-
-    @Autowired
-    public void setPaymentRepository(PaymentRepository paymentRepository) {
         this.paymentRepository = paymentRepository;
     }
 
