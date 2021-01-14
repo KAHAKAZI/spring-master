@@ -4,7 +4,8 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service("paymentIdGenerator")
+//@Service("paymentIdGenerator")
+@IdGenerator("incremental")
 public class IncrementalIdPaymentGenerator implements PaymentIdGenerator {
 
     private static String ID_FORMAT = "%010d";
