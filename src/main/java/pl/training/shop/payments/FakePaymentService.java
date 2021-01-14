@@ -18,7 +18,7 @@ public class FakePaymentService implements PaymentService {
     private PaymentRepository paymentRepository;
 
     @Autowired
-    public FakePaymentService(@Qualifier("incrementalIdPaymentGenerator") PaymentIdGenerator paymentIdGenerator, PaymentRepository paymentRepository) {
+    public FakePaymentService(PaymentIdGenerator paymentIdGenerator, PaymentRepository paymentRepository) {
         this.paymentIdGenerator = paymentIdGenerator;
         this.paymentRepository = paymentRepository;
     }
