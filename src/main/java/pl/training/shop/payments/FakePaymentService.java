@@ -1,6 +1,7 @@
 package pl.training.shop.payments;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,10 +13,18 @@ import java.time.Instant;
 //@RequiredArgsConstructor
 public class FakePaymentService implements PaymentService {
 
-    @Autowired
     private PaymentIdGenerator paymentIdGenerator;
-    @Autowired
     private PaymentRepository paymentRepository;
+
+    @Autowired
+    public void setPaymentIdGenerator(PaymentIdGenerator paymentIdGenerator) {
+        this.paymentIdGenerator = paymentIdGenerator;
+    }
+
+    @Autowired
+    public void setPaymentRepository(PaymentRepository paymentRepository) {
+        this.paymentRepository = paymentRepository;
+    }
 
     @LogPayments
     @Override
