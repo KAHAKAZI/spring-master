@@ -4,7 +4,6 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-//@Service("paymentIdGenerator")
 @IdGenerator("incremental")
 public class IncrementalIdPaymentGenerator implements PaymentIdGenerator {
 

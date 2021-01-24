@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Aspect
-@Service
 @Log
 public class PaymentConsoleLogger {
 

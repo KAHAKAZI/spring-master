@@ -15,21 +15,11 @@ import javax.annotation.PreDestroy;
 import java.time.Instant;
 
 @Log
-//@Scope("singleton") // singleton ins default, does not have to be specified
-@Scope(BeanDefinition.SCOPE_SINGLETON)
-//@Scope(BeanDefinition.SCOPE_PROTOTYPE)
-@Service("paymentService")
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class FakePaymentService implements PaymentService {
 
-    private PaymentIdGenerator paymentIdGenerator;
-    private PaymentRepository paymentRepository;
-
-    @Autowired
-    public FakePaymentService(@IdGenerator("uuid") PaymentIdGenerator paymentIdGenerator, PaymentRepository paymentRepository) {
-        this.paymentIdGenerator = paymentIdGenerator;
-        this.paymentRepository = paymentRepository;
-    }
+    private final PaymentIdGenerator paymentIdGenerator;
+    private final PaymentRepository paymentRepository;
 
     @LogPayments
     @Override
@@ -43,15 +33,12 @@ public class FakePaymentService implements PaymentService {
         return paymentRepository.save(payment);
     }
 
-    @PostConstruct
     public void init() {
-        log.info("PaymentService init");
+        log.info("PaymentService initialized");
     }
 
-    @PreDestroy
     public void destroy() {
         log.info("PaymentService is going down");
-
     }
 
 }
