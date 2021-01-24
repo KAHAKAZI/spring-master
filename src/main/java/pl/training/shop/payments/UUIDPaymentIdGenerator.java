@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 //@Service
-@IdGenerator("uuid")
+//@IdGenerator("uuid")
 public class UUIDPaymentIdGenerator implements PaymentIdGenerator {
 
     @Override

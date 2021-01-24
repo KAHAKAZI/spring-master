@@ -11,8 +11,7 @@ public class Application {
     private static final String BASE_PACKAGE = "pl.training.shop";
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(BASE_PACKAGE);
-//        try (AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(BASE_PACKAGE)) {
+        try (AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(BASE_PACKAGE)) {
             var paymentService = applicationContext.getBean(PaymentService.class);
             var paymentRequest = PaymentRequest.builder()
                     .money(LocalMoney.of(1_000))
@@ -20,8 +19,6 @@ public class Application {
 
             var payment = paymentService.process(paymentRequest);
             log.info(payment.toString());
-
-            applicationContext.close();
         }
     }
-//}
+}
