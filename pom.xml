@@ -49,7 +49,7 @@
 <!--                                    <element>CLASS</element>-->
 <!--                                    <excludes>-->
 <!--                                        <exclude>pl.training.shop.Application</exclude>-->
-<!--                                        <exclude>pl.training.shop.payments.PaymentConfiguration</exclude>-->
+<!--                                        <exclude>pl.training.shop.payments.PaymentsConfigurationn</exclude>-->
 <!--                                        <exclude>pl.training.shop.payments.PaymentConsoleLogger</exclude>-->
 <!--                                        <exclude>pl.training.shop.payments.LocalMoney</exclude>-->
 <!--                                    </excludes>-->

@@ -1,17 +1,9 @@
 package pl.training.shop.payments;
 
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.context.ApplicationEventPublisher;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.time.Instant;
 
 @Log
@@ -24,12 +16,7 @@ public class FakePaymentService implements PaymentService {
 
     private final PaymentIdGenerator paymentIdGenerator;
     private final PaymentRepository paymentRepository;
-
-//    @Autowired
-//    public FakePaymentService(@IdGenerator("uuid") PaymentIdGenerator paymentIdGenerator, PaymentRepository paymentRepository) {
-//        this.paymentIdGenerator = paymentIdGenerator;
-//        this.paymentRepository = paymentRepository;
-//    }
+    private final ApplicationEventPublisher eventPublisher;
 
     @LogPayments
     @Override
@@ -40,16 +27,8 @@ public class FakePaymentService implements PaymentService {
                 .timestamp(Instant.now())
                 .status(PaymentStatus.STARTED)
                 .build();
+        eventPublisher.publishEvent(new PaymentsStatusChangedEvent(this, payment));
         return paymentRepository.save(payment);
-    }
-
-    public void init() {
-        log.info("PaymentService init");
-    }
-
-    public void destroy() {
-        log.info("PaymentService is going down");
-
     }
 
 }

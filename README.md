@@ -37,7 +37,7 @@ Mvn ERROR output:
 [INFO] Loading execution data file /home/christopher/java/Spring-Master/target/jacoco.exec
 [INFO] Analyzed bundle 'Spring-Master' with 12 classes
 [WARNING] Rule violated for class pl.training.shop.payments.PaymentConsoleLogger: lines covered ratio is 0.00, but expected minimum is 0.50
-[WARNING] Rule violated for class pl.training.shop.payments.PaymentConfiguration: lines covered ratio is 0.00, but expected minimum is 0.50
+[WARNING] Rule violated for class pl.training.shop.payments.PaymentsConfiguration: lines covered ratio is 0.00, but expected minimum is 0.50
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
@@ -73,7 +73,7 @@ Jacoco EXCLUSION exemplary configuration:
                                     <element>CLASS</element>
                                     <excludes>
                                         <exclude>pl.training.shop.Application</exclude>
-                                        <exclude>pl.training.shop.payments.PaymentConfiguration</exclude>
+                                        <exclude>pl.training.shop.payments.PaymentsConfiguration</exclude>
                                         <exclude>pl.training.shop.payments.PaymentConsoleLogger</exclude>
                                     </excludes>
                                     <limits>

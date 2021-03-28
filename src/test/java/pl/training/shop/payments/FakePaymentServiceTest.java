@@ -10,6 +10,7 @@ import org.mockito.AdditionalAnswers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.util.Assert;
 
 import java.time.Instant;
@@ -32,16 +33,17 @@ class FakePaymentServiceTest {
     private PaymentIdGenerator paymentIdGenerator;
     @Mock
     private PaymentRepository paymentRepository;
+    @Mock
+    private ApplicationEventPublisher eventPublisher;
     private Payment payment;
 
-//    @BeforeEach
-//    void setUp() {
-//        Mockito.when(paymentIdGenerator.getNext()).thenReturn(PAYMENT_ID);
-//        Mockito.when(paymentRepository.save(any(Payment.class))).then(AdditionalAnswers.returnsFirstArg());
-////        FakePaymentService fakePaymentService = new FakePaymentService(paymentIdGenerator, paymentRepository);
-//        FakePaymentService fakePaymentService = new FakePaymentService();
-//        payment = fakePaymentService.process(PAYMENT_REQUEST);
-//    }
+    @BeforeEach
+    void setUp() {
+        Mockito.when(paymentIdGenerator.getNext()).thenReturn(PAYMENT_ID);
+        Mockito.when(paymentRepository.save(any(Payment.class))).then(AdditionalAnswers.returnsFirstArg());
+        var fakePaymentService = new FakePaymentService(paymentIdGenerator, paymentRepository, eventPublisher);
+        payment = fakePaymentService.process(PAYMENT_REQUEST);
+    }
 
     @DisplayName("Should assign generated id to created payment")
     @Test
