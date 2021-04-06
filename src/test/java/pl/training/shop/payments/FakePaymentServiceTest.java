@@ -1,30 +1,25 @@
 package pl.training.shop.payments;
 
 import org.javamoney.moneta.FastMoney;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.AdditionalAnswers;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.util.Assert;
 
-import java.time.Instant;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class FakePaymentServiceTest {
+public class FakePaymentServiceTest {
 
     private static final String PAYMENT_ID = "1";
-
     private static final FastMoney MONEY = LocalMoney.of(1_000);
-
     private static final PaymentRequest PAYMENT_REQUEST = PaymentRequest.builder()
             .money(MONEY)
             .build();
@@ -39,26 +34,22 @@ class FakePaymentServiceTest {
 
     @BeforeEach
     void setUp() {
-        Mockito.when(paymentIdGenerator.getNext()).thenReturn(PAYMENT_ID);
-        Mockito.when(paymentRepository.save(any(Payment.class))).then(AdditionalAnswers.returnsFirstArg());
-        var fakePaymentService = new FakePaymentService(paymentIdGenerator, paymentRepository, eventPublisher);
-        payment = fakePaymentService.process(PAYMENT_REQUEST);
+        when(paymentIdGenerator.getNext()).thenReturn(PAYMENT_ID);
+        when(paymentRepository.save(any(Payment.class))).then(returnsFirstArg());
+        var paymentService = new FakePaymentService(paymentIdGenerator, paymentRepository, eventPublisher);
+        payment = paymentService.process(PAYMENT_REQUEST);
     }
 
     @DisplayName("Should assign generated id to created payment")
     @Test
     void shouldAssignGeneratedIdToCreatedPayment() {
-        var paymentId = payment.getId();
-        var expected = PAYMENT_ID;
-        Assertions.assertEquals(paymentId, expected);
+        assertEquals(PAYMENT_ID, payment.getId());
     }
 
     @DisplayName("Should assign money from payment request to created payment")
     @Test
     void shouldAssignMoneyFromPaymentRequestToCreatedPayment() {
-        var money = payment.getMoney();
-        var expected = MONEY;
-        Assertions.assertEquals(money, expected);
+        assertEquals(MONEY, payment.getMoney());
     }
 
     @DisplayName("Should assign timestamp to created payment")
@@ -67,18 +58,16 @@ class FakePaymentServiceTest {
         assertNotNull(payment.getTimestamp());
     }
 
-    @DisplayName("Should assign started status to created payment")
+    @DisplayName("Should assign STARTED status to created payment")
     @Test
     void shouldAssignStartedStatusToCreatedPayment() {
-        var paymentStatus = payment.getStatus();
-        var expected = PaymentStatus.STARTED;
-        Assertions.assertEquals(paymentStatus, expected);
+        assertEquals(PaymentStatus.STARTED, payment.getStatus());
     }
 
     @DisplayName("Should save created payment")
     @Test
     void shouldSaveCreatedPayment() {
-        Mockito.verify(paymentRepository).save(payment);
+        verify(paymentRepository).save(payment);
     }
 
 }

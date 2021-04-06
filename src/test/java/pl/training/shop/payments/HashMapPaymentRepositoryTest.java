@@ -5,19 +5,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class HashMapPaymentRepositoryTest {
+public class HashMapPaymentRepositoryTest {
 
-    private static final String  PAYMENT_ID = "1";
-
+    private static final String PAYMENT_ID = "1";
     private static final Payment PAYMENT = Payment.builder()
             .id(PAYMENT_ID)
             .build();
@@ -32,11 +29,11 @@ class HashMapPaymentRepositoryTest {
         paymentRepository.setPayments(payments);
     }
 
-    @DisplayName("Should add payment to hash map under payment id key")
+    @DisplayName("Should add payment to the hashMap under the payment id key")
     @Test
-    void shouldAddPaymentToHashMapUnderPaymentId() {
+    void shouldAddPaymentToTheHashMapUnderThePaymentIdKey() {
         paymentRepository.save(PAYMENT);
-        Mockito.verify(payments).put(PAYMENT_ID, PAYMENT);
+        verify(payments).put(PAYMENT_ID, PAYMENT);
     }
 
 }

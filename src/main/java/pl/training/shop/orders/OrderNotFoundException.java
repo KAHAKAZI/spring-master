@@ -1,4 +1,4 @@
 package pl.training.shop.orders;
 
-public class OrderNotFoundException extends RuntimeException {
+public class OrderNotFoundException extends  RuntimeException {
 }

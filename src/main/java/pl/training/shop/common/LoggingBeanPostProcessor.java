@@ -5,8 +5,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
-@Log
 @Component
+@Log
 public class LoggingBeanPostProcessor implements BeanPostProcessor {
 
     @Override
@@ -20,4 +20,5 @@ public class LoggingBeanPostProcessor implements BeanPostProcessor {
         log.info("Bean " + beanName + " initialized");
         return bean;
     }
+
 }

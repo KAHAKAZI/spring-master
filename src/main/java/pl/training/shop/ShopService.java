@@ -1,7 +1,6 @@
 package pl.training.shop;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import pl.training.shop.common.PagedResult;
 import pl.training.shop.orders.Order;
 import pl.training.shop.orders.OrderService;
@@ -12,7 +11,6 @@ import pl.training.shop.products.Product;
 import pl.training.shop.products.ProductService;
 
 @RequiredArgsConstructor
-@Service
 public class ShopService {
 
     private final OrderService orderService;
@@ -32,7 +30,7 @@ public class ShopService {
     }
 
     public Payment payForOrder(long orderId) {
-        var order = orderService.getById(orderId);
+        var order = orderService.getBy(orderId);
         var paymentRequest = PaymentRequest.builder()
                 .money(order.getTotalPrice())
                 .build();
@@ -41,4 +39,5 @@ public class ShopService {
         orderService.update(order);
         return payment;
     }
+
 }

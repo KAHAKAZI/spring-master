@@ -5,8 +5,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-@Log
 @Component
+@Log
 public class ContextListener {
 
     @EventListener

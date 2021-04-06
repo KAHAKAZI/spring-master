@@ -1,14 +1,14 @@
 package pl.training.shop.orders;
 
-import org.springframework.stereotype.Repository;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Repository
 public class HashMapOrderRepository implements OrderRepository {
 
+    @Setter
     private Map<Long, Order> orders = new HashMap<>();
     private long index = 0;
 
@@ -28,4 +28,5 @@ public class HashMapOrderRepository implements OrderRepository {
     public void update(Order order) {
         orders.replace(order.getId(), order);
     }
+
 }

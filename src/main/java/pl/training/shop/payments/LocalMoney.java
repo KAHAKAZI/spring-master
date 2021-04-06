@@ -20,4 +20,5 @@ public class LocalMoney {
         var locale = Locale.getDefault();
         return Monetary.getCurrency(locale);
     }
+
 }

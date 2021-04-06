@@ -3,14 +3,11 @@ package pl.training.shop.payments;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.context.ApplicationEventPublisher;
+import pl.training.shop.common.profiler.ExecutionTime;
 
 import java.time.Instant;
 
 @Log
-//@Scope("singleton") // singleton ins default, does not have to be specified
-//@Scope(BeanDefinition.SCOPE_SINGLETON)
-//@Scope(BeanDefinition.SCOPE_PROTOTYPE)
-//@Service("paymentService")
 @RequiredArgsConstructor
 public class FakePaymentService implements PaymentService {
 
@@ -18,6 +15,7 @@ public class FakePaymentService implements PaymentService {
     private final PaymentRepository paymentRepository;
     private final ApplicationEventPublisher eventPublisher;
 
+    @ExecutionTime
     @LogPayments
     @Override
     public Payment process(PaymentRequest paymentRequest) {
@@ -27,7 +25,7 @@ public class FakePaymentService implements PaymentService {
                 .timestamp(Instant.now())
                 .status(PaymentStatus.STARTED)
                 .build();
-        eventPublisher.publishEvent(new PaymentsStatusChangedEvent(this, payment));
+        eventPublisher.publishEvent(new PaymentStatusChangedEvent(this, payment));
         return paymentRepository.save(payment);
     }
 

@@ -1,7 +1,5 @@
 package pl.training.shop.orders;
 
-import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
 public interface OrderRepository {
@@ -11,4 +9,5 @@ public interface OrderRepository {
     Optional<Order> findById(Long id);
 
     void update(Order order);
+
 }
